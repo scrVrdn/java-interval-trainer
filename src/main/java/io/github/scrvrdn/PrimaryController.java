@@ -144,11 +144,12 @@ public class PrimaryController {
             e.printStackTrace();
         }
     }
-  
-   @FXML
+
+  @FXML
     private void handleAnswerButton(ActionEvent event) {        
         Button source = (Button) event.getSource();
         // System.out.println(source.getUserData());
+        if (source.getStyleClass().contains("wrong")) return;
         if ((Interval) source.getUserData() != this.interval.getInterval()) {
             source.getStyleClass().add("wrong");
         } else {
@@ -170,7 +171,7 @@ public class PrimaryController {
     void closeApplication() {
         if (mp != null && mp.isOpen()) {
             mp.close();
-            System.out.println("Synth is closed: " + !(this.mp.isOpen()));
+            // System.out.println("Synth is closed: " + !(this.mp.isOpen()));
         }
         Platform.exit(); 
     }
