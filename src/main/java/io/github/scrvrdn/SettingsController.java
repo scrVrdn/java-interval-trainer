@@ -72,7 +72,7 @@ public class SettingsController {
         checkSelectedIntervals();
 
         // initialize pitch range spinners
-        SpinnerValueFactory<Integer> maxPitchValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(AppConstants.MIN_MIDI_VALUE, AppConstants.MAX_MIDI_VALUE, this.currentMaxPitch);
+        SpinnerValueFactory<Integer> maxPitchValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(AppConstants.MIN_MIDI_VALUE + this.minSpan, AppConstants.MAX_MIDI_VALUE, this.currentMaxPitch);
         this.maxPitchSpinner.setValueFactory(maxPitchValueFactory);
         this.maxPitch = this.maxPitchSpinner.getValue();
         
@@ -85,7 +85,7 @@ public class SettingsController {
             }
         });
 
-        SpinnerValueFactory<Integer> minPitchValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(AppConstants.MIN_MIDI_VALUE, AppConstants.MAX_MIDI_VALUE, this.currentMinPitch);
+        SpinnerValueFactory<Integer> minPitchValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(AppConstants.MIN_MIDI_VALUE, AppConstants.MAX_MIDI_VALUE - this.minSpan, this.currentMinPitch);
         this.minPitchSpinner.setValueFactory(minPitchValueFactory);
         this.minPitch = this.minPitchSpinner.getValue();
 
