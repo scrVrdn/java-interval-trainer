@@ -26,18 +26,22 @@
                     <!-- <Label text="Settings" /> -->
                 <!-- </VBox> -->
                 
-                <Label text="Interval Directions" />
+                
                 <HBox alignment="CENTER">
                     <VBox alignment="CENTER_LEFT" styleClass="vbox">
+                        <Label text="Interval Directions" />
                         <CheckBox fx:id="ascending" text="Ascending" onAction="#setDirections"/>
                         <CheckBox fx:id="descending" text="Descending" onAction="#setDirections"/>
                         <CheckBox fx:id="simultaneous" text="Simultaneous" onAction="#setDirections"/>
                     </VBox>
+                
+                    <VBox styleClass="vbox">
+                        <Label text="Pitch Range" />
+                        <Spinner fx:id="maxPitchSpinner" styleClass="range-spinner"/>
+                        <Spinner fx:id="minPitchSpinner" styleClass="range-spinner"/>
+                    </VBox>
                 </HBox>
-                <VBox styleClass="vbox">
-                    <Spinner fx:id="maxPitchSpinner" styleClass="range-spinner"/>
-                    <Spinner fx:id="minPitchSpinner" styleClass="range-spinner"/>
-                </VBox>
+                
                 <Separator/>
                 <Label text="Intervals"/>
                 <HBox alignment="CENTER">

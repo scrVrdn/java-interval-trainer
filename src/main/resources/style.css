@@ -14,6 +14,11 @@ layout
     padding: 20 20 20 20;
 }
 
+.label
+{
+    -fx-padding: 10 0 10 0;
+}
+
 .range-spinner
 {
     -fx-pref-width: 60;

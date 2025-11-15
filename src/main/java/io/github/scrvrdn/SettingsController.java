@@ -183,8 +183,6 @@ public class SettingsController {
 
     // TODO: set tempo
 
-    // TODO: set range
-
     // TODO: load profile
 
     // TODO: save profile
