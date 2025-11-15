@@ -6,6 +6,10 @@ public class IntervalFactory {
     private static final int MAX_MIDI_VALUE = 108;
     private static final int MIN_MIDI_VALUE = 21;
 
+    // the maximum and minimum allowed pitch of an interval (as MIDI value);
+    private int maxPitch = MAX_MIDI_VALUE;
+    private int minPitch = MIN_MIDI_VALUE;
+
     // random number generator
     private final Random rng = new Random();
 
@@ -35,7 +39,8 @@ public class IntervalFactory {
         Interval interval = getRandomInterval();
 
         // choose randomly the midi value of the lower note
-        int lo = MIN_MIDI_VALUE + this.rng.nextInt(MAX_MIDI_VALUE - MIN_MIDI_VALUE - interval.getSemitones() + 1);
+        // int lo = MIN_MIDI_VALUE + this.rng.nextInt(MAX_MIDI_VALUE - MIN_MIDI_VALUE - interval.getSemitones() + 1);
+        int lo = this.minPitch + this.rng.nextInt(this.maxPitch - this.minPitch - interval.getSemitones() + 1);
 
         // choose direction
         byte direction = getRandomDirection();
@@ -56,7 +61,7 @@ public class IntervalFactory {
             bitMask &= bitMask - 1; // clear least significant set bit
             count++;
         }
-        
+        System.out.printf("minPitch: %d, maxPitch: %d\n", this.minPitch, this.maxPitch);
         return Interval.getInterval(i);
     }
 
@@ -84,6 +89,18 @@ public class IntervalFactory {
 
         this.intervalSet = newIntervals;
         this.numOfIntervals = Integer.bitCount(newIntervals);
+    }
+
+    // updates the current max pitch of an interval
+    public void setMaxPitch(int n) {
+        // TODO: validation logic
+        this.maxPitch = n;
+    }
+
+    // updates the current min pitch of an interval
+    public void setMinPitch(int n) {
+        // TODO: validation logic
+        this.minPitch = n;
     }
 
     // returns true if the interval passed as argument is included in the interval set

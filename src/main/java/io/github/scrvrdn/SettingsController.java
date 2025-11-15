@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 
 public class SettingsController {
     private byte currentDirections = 0;
@@ -46,6 +48,16 @@ public class SettingsController {
     @FXML private CheckBox augEleventh;
     @FXML private CheckBox twelfth;
 
+    // pitch range
+    private int currentMaxPitch = AppConstants.MAX_MIDI_VALUE;
+    private int maxPitch;
+    private int currentMinPitch = AppConstants.MIN_MIDI_VALUE;
+    private int minPitch;
+    private int minSpan = Interval.length() - 1;
+    @FXML private Spinner<Integer> maxPitchSpinner;
+    @FXML private Spinner<Integer> minPitchSpinner;
+
+    // control buttons
     @FXML private Button apply;
     @FXML private Button discard;
 
@@ -58,6 +70,33 @@ public class SettingsController {
 
         addBitValueToIntervals();
         checkSelectedIntervals();
+
+        // initialize pitch range spinners
+        SpinnerValueFactory<Integer> maxPitchValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(AppConstants.MIN_MIDI_VALUE, AppConstants.MAX_MIDI_VALUE, this.currentMaxPitch);
+        this.maxPitchSpinner.setValueFactory(maxPitchValueFactory);
+        this.maxPitch = this.maxPitchSpinner.getValue();
+        
+        this.maxPitchSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+            this.maxPitch = newValue;
+            int minValue = this.maxPitch - this.minSpan;
+            if (this.minPitch > minValue) {
+                this.minPitchSpinner.getValueFactory().setValue(minValue);
+                this.minPitch = minValue;
+            }
+        });
+
+        SpinnerValueFactory<Integer> minPitchValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(AppConstants.MIN_MIDI_VALUE, AppConstants.MAX_MIDI_VALUE, this.currentMinPitch);
+        this.minPitchSpinner.setValueFactory(minPitchValueFactory);
+        this.minPitch = this.minPitchSpinner.getValue();
+
+        minPitchSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+            this.minPitch = newValue;
+            int maxValue = this.minPitch + this.minSpan;
+            if (this.maxPitch < maxValue) {
+                this.maxPitchSpinner.getValueFactory().setValue(maxValue);
+                this.maxPitch = maxValue;
+            }
+        });
     }
 
     // checkmark all selected directions
@@ -172,6 +211,16 @@ public class SettingsController {
             // System.out.println(this.newIntervals);
         }
 
+        if (this.maxPitch != this.currentMaxPitch) {
+            mediator.updateSettings("maxPitch", Integer.valueOf(this.maxPitch));
+            this.currentMaxPitch = this.maxPitch;
+        }
+
+        if (this.minPitch != this.currentMinPitch) {
+            mediator.updateSettings("minPitch", Integer.valueOf(this.minPitch));
+            this.currentMinPitch = this.minPitch;
+        }
+
         switchToPrimary();
     }
 
@@ -204,6 +253,8 @@ public class SettingsController {
             this.newIntervals = this.currentIntervals;
             checkSelectedIntervals();
         }
+
+        // TODO: reset pitch range
     }
 
     @FXML

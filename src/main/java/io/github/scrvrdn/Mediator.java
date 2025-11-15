@@ -40,7 +40,13 @@ public class Mediator implements MediatorInterface {
         if (setting.equals("directions")) this.primary.setDirections(((Byte) value).byteValue());
 
         // update interval set
-        if (setting.equals("intervals")) this.primary.setIntervals((int) value);        
+        if (setting.equals("intervals")) this.primary.setIntervals((int) value);
+        
+        // update max pitch
+        if (setting.equals("maxPitch")) this.primary.setMaxPitch((int) value);
+
+        // update min pitch
+        if (setting.equals("minPitch")) this.primary.setMinPitch((int) value);
     }
 
     public void refreshPrimary() {

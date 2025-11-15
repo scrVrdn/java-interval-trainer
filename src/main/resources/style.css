@@ -14,6 +14,12 @@ layout
     padding: 20 20 20 20;
 }
 
+.range-spinner
+{
+    -fx-pref-width: 60;
+    -fx-pref-height: 25;
+}
+
 /*
 response button colors
 */

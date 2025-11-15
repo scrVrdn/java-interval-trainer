@@ -187,4 +187,12 @@ public class PrimaryController {
         this.intervalFactory.setIntervals(newIntervals);
         this.settingsChanged = true;
     }
+
+    public void setMaxPitch(int newMax) {
+        this.intervalFactory.setMaxPitch(newMax);
+    }
+
+    public void setMinPitch(int newMin) {
+        this.intervalFactory.setMinPitch(newMin);
+    }
 }

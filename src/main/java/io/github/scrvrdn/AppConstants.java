@@ -1,5 +1,9 @@
 package io.github.scrvrdn;
 public class AppConstants {
+    // MIDI pitch range
+    public static final int MAX_MIDI_VALUE = 108;
+    public static final int MIN_MIDI_VALUE = 21;
+
     // bit representation of directions
     public static final byte ASCENDING = 0b001;
     public static final byte DESCENDING = 0b010;

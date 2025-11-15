@@ -7,6 +7,8 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<!-- <?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?> -->
 <?import javafx.scene.control.Tooltip?>
 
 <BorderPane prefWidth="640" prefHeight="480" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.scrvrdn.SettingsController" styleClass="border-pane" >
@@ -32,6 +34,10 @@
                         <CheckBox fx:id="simultaneous" text="Simultaneous" onAction="#setDirections"/>
                     </VBox>
                 </HBox>
+                <VBox styleClass="vbox">
+                    <Spinner fx:id="maxPitchSpinner" styleClass="range-spinner"/>
+                    <Spinner fx:id="minPitchSpinner" styleClass="range-spinner"/>
+                </VBox>
                 <Separator/>
                 <Label text="Intervals"/>
                 <HBox alignment="CENTER">
