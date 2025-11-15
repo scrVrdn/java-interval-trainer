@@ -17,6 +17,14 @@ layout
 .label
 {
     -fx-padding: 10 0 10 0;
+    padding: 10 0 10 0;
+}
+
+.interval-button
+{
+    -fx-pref-width: 100;
+    -fx-pref-height: 50;
+    -fx-text-alignment: center;
 }
 
 .range-spinner

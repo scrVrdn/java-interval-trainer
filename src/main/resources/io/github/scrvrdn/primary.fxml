@@ -26,39 +26,39 @@
             <Label fx:id="statsLabel" />
 
             <HBox alignment="CENTER">
-               <Button fx:id="unison" text="Unison" onAction="#handleAnswerButton" />
-               <Button fx:id="minSecond" text="Minor Second" onAction="#handleAnswerButton" />
-               <Button fx:id="majSecond" text="Major Second" onAction="#handleAnswerButton" />
-               <Button fx:id="minThird" text="Minor Third" onAction="#handleAnswerButton" />               
+               <Button fx:id="unison" text="Unison" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="minSecond" text="Minor Second" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="majSecond" text="Major Second" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="minThird" text="Minor Third" onAction="#handleAnswerButton" styleClass="interval-button" />               
             </HBox>
 
             <HBox alignment="CENTER">
-               <Button fx:id="majThird" text="Major Third" onAction="#handleAnswerButton"/>
-               <Button fx:id="fourth" text="Perfect Fourth" onAction="#handleAnswerButton" />
-               <Button fx:id="tritone" text="Tritone" onAction="#handleAnswerButton" />
-               <Button fx:id="fifth" text="Perfect Fifth" onAction="#handleAnswerButton" />               
+               <Button fx:id="majThird" text="Major Third" onAction="#handleAnswerButton" styleClass="interval-button"/>
+               <Button fx:id="fourth" text="Perfect Fourth" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="tritone" text="Tritone" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="fifth" text="Perfect Fifth" onAction="#handleAnswerButton" styleClass="interval-button" />               
             </HBox>
 
             <HBox alignment="CENTER">
-               <Button fx:id="minSixth" text="Minor Sixth" onAction="#handleAnswerButton" />
-               <Button fx:id="majSixth" text="Major Sixth" onAction="#handleAnswerButton" />
-               <Button fx:id="minSeventh" text="Minor Seventh" onAction="#handleAnswerButton" />
-               <Button fx:id="majSeventh" text="Major Seventh" onAction="#handleAnswerButton" />               
+               <Button fx:id="minSixth" text="Minor Sixth" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="majSixth" text="Major Sixth" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="minSeventh" text="Minor Seventh" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="majSeventh" text="Major Seventh" onAction="#handleAnswerButton" styleClass="interval-button" />               
             </HBox>
 
             <HBox alignment="CENTER">
-               <Button fx:id="octave" text="Perfect Octave" onAction="#handleAnswerButton" />
-               <Button fx:id="minNinth" text="Minor Ninth" onAction="#handleAnswerButton" />
-               <Button fx:id="majNinth" text="Major Ninth" onAction="#handleAnswerButton" />
-               <Button fx:id="minTenth" text="Minor Tenth" onAction="#handleAnswerButton" />
+               <Button fx:id="octave" text="Perfect Octave" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="minNinth" text="Minor Ninth" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="majNinth" text="Major Ninth" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="minTenth" text="Minor Tenth" onAction="#handleAnswerButton" styleClass="interval-button" />
                
             </HBox>
                
             <HBox alignment="CENTER">
-            <Button fx:id="majTenth" text="Major Tenth" onAction="#handleAnswerButton" />
-               <Button fx:id="eleventh" text="Perfect Eleventh" onAction="#handleAnswerButton" />
-               <Button fx:id="augEleventh" text="Augmented Eleventh" onAction="#handleAnswerButton" />
-               <Button fx:id="twelfth" text="Perfect Twelfth" onAction="#handleAnswerButton" />
+            <Button fx:id="majTenth" text="Major Tenth" onAction="#handleAnswerButton" styleClass="interval-button" />
+               <Button fx:id="eleventh" text="Perfect Eleventh" onAction="#handleAnswerButton" styleClass="interval-button" wrapText="true" />
+               <Button fx:id="augEleventh" text="Augmented Eleventh" onAction="#handleAnswerButton" styleClass="interval-button" wrapText="true" />
+               <Button fx:id="twelfth" text="Perfect Twelfth" onAction="#handleAnswerButton" styleClass="interval-button" />
             </HBox>
             
             <HBox alignment="CENTER">

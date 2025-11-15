@@ -61,7 +61,7 @@ public class IntervalFactory {
             bitMask &= bitMask - 1; // clear least significant set bit
             count++;
         }
-        System.out.printf("minPitch: %d, maxPitch: %d\n", this.minPitch, this.maxPitch);
+        
         return Interval.getInterval(i);
     }
 
