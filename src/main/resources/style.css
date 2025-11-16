@@ -8,10 +8,11 @@ layout
     padding: 0 10 0 10;    
 }
 
-.vbox
+.interval-button
 {
-    -fx-padding: 20 20 20 20;
-    padding: 20 20 20 20;
+    -fx-pref-width: 100;
+    -fx-pref-height: 50;
+    -fx-text-alignment: center;
 }
 
 .label
@@ -20,17 +21,22 @@ layout
     padding: 10 0 10 0;
 }
 
-.interval-button
-{
-    -fx-pref-width: 100;
-    -fx-pref-height: 50;
-    -fx-text-alignment: center;
+.pitch-label
+{   -fx-pref-width: 30;
+    -fx-pref-height: 25;
+    -fx-text-alignment: left;
 }
 
 .range-spinner
 {
     -fx-pref-width: 60;
     -fx-pref-height: 25;
+}
+
+.vbox
+{
+    -fx-padding: 20 20 20 20;
+    padding: 20 20 20 20;
 }
 
 /*

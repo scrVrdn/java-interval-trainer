@@ -37,8 +37,14 @@
                 
                     <VBox styleClass="vbox">
                         <Label text="Pitch Range" />
-                        <Spinner fx:id="maxPitchSpinner" styleClass="range-spinner"/>
-                        <Spinner fx:id="minPitchSpinner" styleClass="range-spinner"/>
+                        <HBox alignment="CENTER">
+                            <Label fx:id="maxPitchLabel" styleClass="pitch-label"/>
+                            <Spinner fx:id="maxPitchSpinner" styleClass="range-spinner"/>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                            <Label fx:id="minPitchLabel" styleClass="pitch-label"/>
+                            <Spinner fx:id="minPitchSpinner" styleClass="range-spinner"/>
+                        </HBox>
                     </VBox>
                 </HBox>
                 

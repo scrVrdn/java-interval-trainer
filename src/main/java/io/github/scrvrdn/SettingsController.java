@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
@@ -56,6 +57,8 @@ public class SettingsController {
     private int minSpan = Interval.length() - 1;
     @FXML private Spinner<Integer> maxPitchSpinner;
     @FXML private Spinner<Integer> minPitchSpinner;
+    @FXML private Label maxPitchLabel;
+    @FXML private Label minPitchLabel;
 
     // control buttons
     @FXML private Button apply;
@@ -72,29 +75,40 @@ public class SettingsController {
         checkSelectedIntervals();
 
         // initialize pitch range spinners
+        // max pitch
         SpinnerValueFactory<Integer> maxPitchValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(AppConstants.MIN_MIDI_VALUE + this.minSpan, AppConstants.MAX_MIDI_VALUE, this.currentMaxPitch);
         this.maxPitchSpinner.setValueFactory(maxPitchValueFactory);
         this.maxPitch = this.maxPitchSpinner.getValue();
-        
+
+        this.maxPitchLabel.setText(getPitchName(this.maxPitch));
+
         this.maxPitchSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             this.maxPitch = newValue;
+            this.maxPitchLabel.setText(getPitchName(this.maxPitch));
             int minValue = this.maxPitch - this.minSpan;
             if (this.minPitch > minValue) {
                 this.minPitchSpinner.getValueFactory().setValue(minValue);
                 this.minPitch = minValue;
+                this.minPitchLabel.setText(getPitchName(this.minPitch));
             }
         });
 
+
+        // min pitch
         SpinnerValueFactory<Integer> minPitchValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(AppConstants.MIN_MIDI_VALUE, AppConstants.MAX_MIDI_VALUE - this.minSpan, this.currentMinPitch);
         this.minPitchSpinner.setValueFactory(minPitchValueFactory);
         this.minPitch = this.minPitchSpinner.getValue();
 
-        minPitchSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+        this.minPitchLabel.setText(getPitchName(this.minPitch));
+
+        this.minPitchSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             this.minPitch = newValue;
+            this.minPitchLabel.setText(getPitchName(this.minPitch));
             int maxValue = this.minPitch + this.minSpan;
             if (this.maxPitch < maxValue) {
                 this.maxPitchSpinner.getValueFactory().setValue(maxValue);
                 this.maxPitch = maxValue;
+                this.maxPitchLabel.setText(getPitchName(this.maxPitch));
             }
         });
     }
@@ -179,6 +193,11 @@ public class SettingsController {
         }
         
         // System.out.println(this.newIntervals);
+    }
+
+    //
+    private String getPitchName(int midiValue) {
+        return PitchClass.getPitchClass(midiValue % 12).toString() + (midiValue - 12) / 12;
     }
 
     // TODO: set tempo
