@@ -50,9 +50,9 @@ public class SettingsController {
     @FXML private CheckBox twelfth;
 
     // pitch range
-    private int currentMaxPitch = AppConstants.MAX_MIDI_VALUE;
+    private int currentMaxPitch = 96;
     private int maxPitch;
-    private int currentMinPitch = AppConstants.MIN_MIDI_VALUE;
+    private int currentMinPitch = 33;
     private int minPitch;
     private int minSpan = Interval.length() - 1;
     @FXML private Spinner<Integer> maxPitchSpinner;
@@ -261,17 +261,30 @@ public class SettingsController {
 
     @FXML
     private void discardChanges() throws IOException {
+        // reset directions
         if (this.newDirections != this.currentDirections) {
             this.newDirections = this.currentDirections;
             checkSelectedDirections();
         }
 
+        // reset intervals
         if (this.newIntervals != this.currentIntervals) {
             this.newIntervals = this.currentIntervals;
             checkSelectedIntervals();
         }
 
-        // TODO: reset pitch range
+        // reset pitch range
+        if (this.currentMaxPitch != this.maxPitch) {
+            this.maxPitchSpinner.getValueFactory().setValue(this.currentMaxPitch);
+            this.maxPitch = this.currentMaxPitch;
+            this.maxPitchLabel.setText(getPitchName(this.maxPitch));
+        }
+
+        if (this.currentMinPitch != this.minPitch) {
+            this.minPitchSpinner.getValueFactory().setValue(this.currentMinPitch);
+            this.minPitch = this.currentMinPitch;
+            this.minPitchLabel.setText(getPitchName(this.minPitch));
+        }
     }
 
     @FXML
