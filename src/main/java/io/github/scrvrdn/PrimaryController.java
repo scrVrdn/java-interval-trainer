@@ -176,9 +176,9 @@ public class PrimaryController {
         Platform.exit(); 
     }
 
-    /*************************** */
+    /*****************************/
     /* Applying new settings    */
-    /****************************/
+    /***************************/
     public void setDirections(byte newDirections) {
         this.intervalFactory.setIntervalDirections(newDirections);
     }

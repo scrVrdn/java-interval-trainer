@@ -33,6 +33,11 @@ layout
     -fx-pref-height: 25;
 }
 
+.tempo-slider
+{
+    -fx-pref-width: 200;
+}
+
 .vbox
 {
     -fx-padding: 20 20 20 20;

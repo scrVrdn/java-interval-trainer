@@ -7,8 +7,9 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
-<!-- <?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?> -->
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 
 <BorderPane prefWidth="640" prefHeight="480" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.scrvrdn.SettingsController" styleClass="border-pane" >
@@ -45,6 +46,11 @@
                             <Label fx:id="minPitchLabel" styleClass="pitch-label"/>
                             <Spinner fx:id="minPitchSpinner" styleClass="range-spinner"/>
                         </HBox>
+                    </VBox>
+
+                    <VBox styleClass="vbox">
+                        <Label fx:id="tempoLabel" />
+                        <Slider fx:id="tempoSlider" min="60" max="240" majorTickUnit="10" minorTickCount="1" showTickMarks="true" showTickLabels="true" snapToTicks="true" styleClass="tempo-slider"/>
                     </VBox>
                 </HBox>
                 

@@ -12,4 +12,9 @@ public class AppConstants {
     // bit representation of intervals
     public static final int MAX_INTERVALS = 0xFFFFF;
     public static final int MIN_INTERVALS = 1;
+
+    // tempo
+    public static final int MAX_TEMPO = 240;
+    public static final int MIN_TEMPO = 60;
+    public static final int DEFAULT_TEMPO = 120;
 }

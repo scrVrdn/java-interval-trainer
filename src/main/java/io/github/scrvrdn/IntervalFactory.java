@@ -3,8 +3,8 @@ package io.github.scrvrdn;
 import java.util.Random;
 
 public class IntervalFactory {
-    private static final int MAX_MIDI_VALUE = 108;
-    private static final int MIN_MIDI_VALUE = 21;
+    private static final int MAX_MIDI_VALUE = AppConstants.MAX_MIDI_VALUE;
+    private static final int MIN_MIDI_VALUE = AppConstants.MIN_MIDI_VALUE;
 
     // the maximum and minimum allowed pitch of an interval (as MIDI value);
     private int maxPitch = MAX_MIDI_VALUE;
@@ -39,7 +39,6 @@ public class IntervalFactory {
         Interval interval = getRandomInterval();
 
         // choose randomly the midi value of the lower note
-        // int lo = MIN_MIDI_VALUE + this.rng.nextInt(MAX_MIDI_VALUE - MIN_MIDI_VALUE - interval.getSemitones() + 1);
         int lo = this.minPitch + this.rng.nextInt(this.maxPitch - this.minPitch - interval.getSemitones() + 1);
 
         // choose direction
@@ -85,22 +84,22 @@ public class IntervalFactory {
 
     // updates the intervals included in the query set, represented as a bit vector;
     public void setIntervals(int newIntervals) {
-        if (newIntervals < AppConstants.MIN_INTERVALS ||newIntervals > AppConstants.MAX_INTERVALS) throw new IllegalArgumentException();
+        if (newIntervals < AppConstants.MIN_INTERVALS || newIntervals > AppConstants.MAX_INTERVALS) throw new IllegalArgumentException();
 
         this.intervalSet = newIntervals;
         this.numOfIntervals = Integer.bitCount(newIntervals);
     }
 
     // updates the current max pitch of an interval
-    public void setMaxPitch(int n) {
-        // TODO: validation logic
-        this.maxPitch = n;
+    public void setMaxPitch(int p) {
+        if (p > MAX_MIDI_VALUE || p < this.minPitch) throw new IllegalArgumentException();
+        this.maxPitch = p;
     }
 
     // updates the current min pitch of an interval
-    public void setMinPitch(int n) {
-        // TODO: validation logic
-        this.minPitch = n;
+    public void setMinPitch(int p) {
+        if (p < MIN_MIDI_VALUE || p > this.maxPitch) throw new IllegalArgumentException();
+        this.minPitch = p;
     }
 
     // returns true if the interval passed as argument is included in the interval set

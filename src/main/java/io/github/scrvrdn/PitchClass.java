@@ -20,30 +20,29 @@ public enum PitchClass {
             case 0:
                 return "C";
             case 1:
-                return "C" + (char) 0x266F;
+                return "C\u266F";
             case 2:
                 return "D";
             case 3:
-                return "E" + (char) 0x266D;
+                return "E\u266D";
             case 4:
                 return "E";
             case 5:
                 return "F";
             case 6:
-                return "F" + (char) 0x266F;
+                return "F\u266F";
             case 7:
                 return "G";
             case 8:
-                return "G" + (char) 0x266F;
+                return "G\u266F";
             case 9:
                 return "A";
             case 10:
-                return "B" + (char) 0x266D;
+                return "B\u266D";
             case 11:
                 return "B";
         }
         
         return "";
     }
-
 }

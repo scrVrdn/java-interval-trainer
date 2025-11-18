@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
@@ -60,6 +61,12 @@ public class SettingsController {
     @FXML private Label maxPitchLabel;
     @FXML private Label minPitchLabel;
 
+    // tempo
+    private int currentTempo = AppConstants.DEFAULT_TEMPO;
+    private int tempo;
+    @FXML private Label tempoLabel;
+    @FXML private Slider tempoSlider;    
+
     // control buttons
     @FXML private Button apply;
     @FXML private Button discard;
@@ -93,7 +100,6 @@ public class SettingsController {
             }
         });
 
-
         // min pitch
         SpinnerValueFactory<Integer> minPitchValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(AppConstants.MIN_MIDI_VALUE, AppConstants.MAX_MIDI_VALUE - this.minSpan, this.currentMinPitch);
         this.minPitchSpinner.setValueFactory(minPitchValueFactory);
@@ -110,6 +116,16 @@ public class SettingsController {
                 this.maxPitch = maxValue;
                 this.maxPitchLabel.setText(getPitchName(this.maxPitch));
             }
+        });
+
+        // tempo
+        this.tempoSlider.setValue(this.currentTempo);
+        this.tempo = (int) this.tempoSlider.getValue();
+        this.tempoLabel.setText("\u2669 = " + this.tempo);        
+
+        this.tempoSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
+            this.tempo = (int) this.tempoSlider.getValue();
+            this.tempoLabel.setText("\u2669 = " + this.tempo);
         });
     }
 
@@ -195,12 +211,9 @@ public class SettingsController {
         // System.out.println(this.newIntervals);
     }
 
-    //
     private String getPitchName(int midiValue) {
         return PitchClass.getPitchClass(midiValue % 12).toString() + (midiValue - 12) / 12;
     }
-
-    // TODO: set tempo
 
     // TODO: load profile
 
@@ -236,6 +249,11 @@ public class SettingsController {
         if (this.minPitch != this.currentMinPitch) {
             mediator.updateSettings("minPitch", Integer.valueOf(this.minPitch));
             this.currentMinPitch = this.minPitch;
+        }
+
+        if (this.tempo != this.currentTempo) {
+            mediator.updateSettings("tempo", Integer.valueOf(this.tempo));
+            this.currentTempo = this.tempo;
         }
 
         switchToPrimary();
@@ -276,14 +294,14 @@ public class SettingsController {
         // reset pitch range
         if (this.currentMaxPitch != this.maxPitch) {
             this.maxPitchSpinner.getValueFactory().setValue(this.currentMaxPitch);
-            this.maxPitch = this.currentMaxPitch;
-            this.maxPitchLabel.setText(getPitchName(this.maxPitch));
         }
 
         if (this.currentMinPitch != this.minPitch) {
             this.minPitchSpinner.getValueFactory().setValue(this.currentMinPitch);
-            this.minPitch = this.currentMinPitch;
-            this.minPitchLabel.setText(getPitchName(this.minPitch));
+        }
+
+        if (this.currentTempo != this.tempo) {
+            this.tempoSlider.setValue(this.currentTempo);
         }
     }
 
