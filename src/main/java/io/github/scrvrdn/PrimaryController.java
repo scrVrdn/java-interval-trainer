@@ -195,4 +195,8 @@ public class PrimaryController {
     public void setMinPitch(int newMin) {
         this.intervalFactory.setMinPitch(newMin);
     }
+
+    public void setTempo(int newTempo) {
+        this.mp.setTempo(newTempo);
+    }
 }

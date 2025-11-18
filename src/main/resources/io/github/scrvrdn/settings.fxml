@@ -49,6 +49,7 @@
                     </VBox>
 
                     <VBox styleClass="vbox">
+                        <Label fx:id="tempoSectionLabel" text="Tempo" />
                         <Label fx:id="tempoLabel" />
                         <Slider fx:id="tempoSlider" min="60" max="240" majorTickUnit="10" minorTickCount="1" showTickMarks="true" showTickLabels="true" snapToTicks="true" styleClass="tempo-slider"/>
                     </VBox>

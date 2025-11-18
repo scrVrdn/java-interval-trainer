@@ -9,9 +9,9 @@ import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Synthesizer;
 
 public class MidiPlayer {
-    private static final int PITCH_DURATION = 500;
     private static final int DELAY_BETWEEN_NOTES = 50;
 
+    private int pitchDuration = 60000 / AppConstants.DEFAULT_TEMPO;
     private Synthesizer synth;
     private Receiver receiver;
     private volatile boolean isRunning = false;
@@ -34,6 +34,10 @@ public class MidiPlayer {
         
         this.receiver.close();
         this.synth.close();
+    }
+
+    public void setTempo(int tempo) {
+        this.pitchDuration = 60000 / tempo;
     }
 
     public void play(QueriedInterval interval) throws InvalidMidiDataException, IllegalStateException, InterruptedException {
@@ -72,7 +76,7 @@ public class MidiPlayer {
         noteOn.setMessage(ShortMessage.NOTE_ON, 0, pitch, 127);
         sendMidiMessage(noteOn);
         
-        Thread.sleep(PITCH_DURATION);
+        Thread.sleep(this.pitchDuration);
 
         ShortMessage noteOff = new ShortMessage();
         noteOff.setMessage(ShortMessage.NOTE_OFF, 0, pitch, 0);
@@ -86,7 +90,7 @@ public class MidiPlayer {
             sendMidiMessage(noteOn);
         }
 
-        Thread.sleep(PITCH_DURATION);
+        Thread.sleep(this.pitchDuration);
 
         for (int pitch : pitches) {
             ShortMessage noteOff = new ShortMessage();

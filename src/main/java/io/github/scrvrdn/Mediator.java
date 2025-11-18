@@ -47,6 +47,9 @@ public class Mediator implements MediatorInterface {
 
         // update min pitch
         if (setting.equals("minPitch")) this.primary.setMinPitch((int) value);
+
+        // update tempo
+        if (setting.equals("tempo")) this.primary.setTempo((int) value);
     }
 
     public void refreshPrimary() {

@@ -64,6 +64,7 @@ public class SettingsController {
     // tempo
     private int currentTempo = AppConstants.DEFAULT_TEMPO;
     private int tempo;
+    @FXML private Label tempoSectionLabel;
     @FXML private Label tempoLabel;
     @FXML private Slider tempoSlider;    
 
