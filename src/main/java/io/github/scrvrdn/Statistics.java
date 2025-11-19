@@ -4,9 +4,17 @@ public class Statistics {
     private int total;
     private int correct;
 
-    public Statistics() {
+    private Statistics() {
         this.total = 0;
         this.correct = 0;
+    }
+
+    private static class StatsHolder {
+        private static final Statistics INSTANCE = new Statistics();
+    }
+
+    public static Statistics getInstance() {
+        return StatsHolder.INSTANCE;
     }
 
     public void incrementTotal() {
@@ -25,9 +33,9 @@ public class Statistics {
         return this.correct;
     }
 
-    // returns average rounded to the nearest integer
+    // returns average of correct answers rounded to the nearest integer
     public int getAverage() {
         if (this.total == 0) return 0;
-        return (this.correct + this.total / 2) / this.total;
+        return (int) (100.0 * this.correct / this.total + 0.5);
     }
 }

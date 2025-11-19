@@ -41,6 +41,7 @@ public class PrimaryController {
     private MidiPlayer mp;
     private IntervalFactory intervalFactory;
     private QueriedInterval interval;
+    private Statistics stats;
     
     private boolean settingsChanged = false;    
     
@@ -48,7 +49,9 @@ public class PrimaryController {
         Mediator mediator = Mediator.getInstance();
         mediator.setPrimary(this);
         this.intervalFactory = new IntervalFactory();
-       
+        this.stats = Statistics.getInstance();
+        setStatsLabelText();
+
         try {
             this.mp = new MidiPlayer();
         } catch (Exception e) {
@@ -145,14 +148,19 @@ public class PrimaryController {
         }
     }
 
-  @FXML
+    @FXML
     private void handleAnswerButton(ActionEvent event) {        
         Button source = (Button) event.getSource();
         // System.out.println(source.getUserData());
         if (source.getStyleClass().contains("wrong")) return;
         if ((Interval) source.getUserData() != this.interval.getInterval()) {
             source.getStyleClass().add("wrong");
+            this.stats.incrementTotal();
+            setStatsLabelText();
         } else {
+            this.stats.incrementCorrect();
+            this.stats.incrementTotal();
+            setStatsLabelText();
             handleNextButton();
         }        
     }
@@ -161,6 +169,10 @@ public class PrimaryController {
         for (Button button : intervalButtons) {
             button.getStyleClass().remove("wrong");
         }
+    }
+
+    private void setStatsLabelText() {
+        this.statsLabel.setText(this.stats.getCorrect() + " out of " + this.stats.getTotal() + " correct (" + this.stats.getAverage() + "%)");
     }
 
     @FXML
